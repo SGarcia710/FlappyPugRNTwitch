@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import React from 'react';
 import Sprites from '../assets/sprites';
 
@@ -8,10 +8,9 @@ const Pipe = props => {
   const x = props.body.position.x - width / 2;
   const y = props.body.position.y - height / 2;
 
-  const pipeRatio = 160 / width; // 160 is the original image size
+  const pipeRatio = 160 / width;
   const pipeHeight = 33 * pipeRatio;
   const pipeIterations = Math.ceil(height / pipeHeight);
-
   return (
     <View
       style={{
@@ -23,7 +22,7 @@ const Pipe = props => {
         overflow: 'hidden',
         flexDirection: 'column',
       }}>
-      {Array.apply(null, Array(pipeIterations)).map((el, idx) => {
+      {Array.apply(null, Array(pipeIterations)).map((_, idx) => {
         return (
           <Image
             style={{width: width, height: pipeHeight}}

@@ -122,7 +122,7 @@ export const addPipesAtLocation = (x, world, entities) => {
   pipes += 2;
 };
 
-const Physics = (entities, {touches, time}) => {
+const Physics = (entities, {touches, time, dispatch}) => {
   let engine = entities.physics.engine;
   let world = entities.physics.world;
   let pug = entities.pug.body;
@@ -150,7 +150,7 @@ const Physics = (entities, {touches, time}) => {
         hadTouches = true;
         Matter.Body.setVelocity(pug, {
           x: pug.velocity.x,
-          y: -10,
+          y: -7,
         });
       }
     });
@@ -165,7 +165,7 @@ const Physics = (entities, {touches, time}) => {
       ) {
         let pipeIndex = parseInt(key.replace('pipe', ''));
         if (
-          entities[key].body.position.x < entities.bird.body.position.x &&
+          entities[key].body.position.x < entities.pug.body.position.x &&
           !entities[key].scored
         ) {
           entities[key].scored = true;
@@ -222,7 +222,7 @@ const App = () => {
   const setupWorld = () => {
     let engine = Matter.Engine.create({enableSleeping: false});
     let world = engine.world;
-    // world.gravity.y = 0.0;
+    world.gravity.y = 0.0;
 
     let pug = Matter.Bodies.rectangle(
       CONSTS.MAX_WIDTH / 2,
